@@ -14,12 +14,12 @@ namespace Мыло
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Pochta());
+            Application.Run(new Mylo());
         }
     }
     public class _email
     {
-        public bool verified = true;
+        public bool verified = false;
         public string Email { get; set; }
         public string Password { get; set; }
         public string Username { get; set; }
@@ -40,9 +40,6 @@ namespace Мыло
                 smtpClient.UseDefaultCredentials = false;
                 System.Net.NetworkCredential Authentificator = new System.Net.NetworkCredential(Username, Password);
                 smtpClient.Credentials = Authentificator;
-
-
-
                 MailAddress from = new MailAddress(Username, Username);
                 MailAddress to = new MailAddress(Email, Email);
                 MailMessage message = new MailMessage(from, to);
