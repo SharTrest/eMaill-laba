@@ -59,7 +59,7 @@
             tabControl1.Location = new Point(0, -1);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(799, 448);
+            tabControl1.Size = new Size(810, 450);
             tabControl1.TabIndex = 0;
             tabControl1.Click += tabControl1_Click;
             // 
@@ -76,7 +76,7 @@
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(791, 420);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "Аутентификация";
+            tabPage1.Text = "Авторизвция";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // Auth_label2
@@ -241,7 +241,7 @@
             MinimizeBox = false;
             Name = "Mylo";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Почта России";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();

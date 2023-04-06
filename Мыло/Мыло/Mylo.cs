@@ -51,7 +51,7 @@ namespace Мыло
                         imap.Connect(imp);
                         email.domein = smtp;
                     }
-                    catch { MessageBox.Show("Несуществующий хост", "Внимание!"); }
+                    catch { MessageBox.Show("Несуществующий домен", "Внимание!"); }
 
                     try
                     {
