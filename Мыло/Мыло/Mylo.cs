@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Limilabs.Mail.Fluent;
 
 namespace Мыло
 {
@@ -86,8 +87,10 @@ namespace Мыло
 
         private void check_mail()
         {
+            Messages_listView1.Items.Clear();
             using (Imap imap = new Imap())
             {
+
                 string imp = "imap." + email.domein.ToString();
                 imap.Connect(imp);
                 try
@@ -99,14 +102,13 @@ namespace Мыло
                     foreach (long uid in uids)
                     {
                         var eml = imap.GetMessageByUID(uid);
-                        IMail email = new MailBuilder()
-                            .CreateFromEml(eml);
-
+                        IMail email = new MailBuilder().CreateFromEml(eml);
+                        string subj = email.Subject;
+                        string text = email.Text;
                         // From
-                        int i = 0;
                         foreach (MailBox m in email.From)
                         {
-                            addrow(m.Address, m.Name);
+                            addrow(m.Address, subj, text);                        
                         }
 
                     }
@@ -123,12 +125,12 @@ namespace Мыло
 
         }
 
-        private void addrow(string adress, string subj)
+        private void addrow(string adress, string subj, string mesage)
         {
             int i = 0;
             i = Messages_listView1.Items.Add(adress).Index;
             Messages_listView1.Items[i].SubItems.Add(subj);
-
+            Messages_listView1.Items[i].SubItems.Add(mesage);
         }
 
         private void tabControl1_Click(object sender, EventArgs e)
