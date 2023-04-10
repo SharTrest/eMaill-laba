@@ -72,7 +72,6 @@ namespace Мыло
         {
             if (MessageBox.Show("Вы не сохранили данные", "Внимание", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                this.Close();
             }
         }
 
@@ -86,6 +85,7 @@ namespace Мыло
 
         private void check_mail()
         {
+            Messages_listView1.Items.Clear();
             using (Imap imap = new Imap())
             {
                 string imp = "imap." + email.domein.ToString();
@@ -101,12 +101,14 @@ namespace Мыло
                         var eml = imap.GetMessageByUID(uid);
                         IMail email = new MailBuilder()
                             .CreateFromEml(eml);
+                        string subj = email.Subject.ToString();
+                        string text = email.Text.ToString();
 
                         // From
                         int i = 0;
                         foreach (MailBox m in email.From)
                         {
-                            addrow(m.Address, m.Name);
+                            addrow(m.Address, subj, text);
                         }
 
                     }
@@ -123,12 +125,12 @@ namespace Мыло
 
         }
 
-        private void addrow(string adress, string subj)
+        private void addrow(string adress, string subj, string mesage)
         {
             int i = 0;
             i = Messages_listView1.Items.Add(adress).Index;
             Messages_listView1.Items[i].SubItems.Add(subj);
-
+            Messages_listView1.Items[i].SubItems.Add(mesage);
         }
 
         private void tabControl1_Click(object sender, EventArgs e)
